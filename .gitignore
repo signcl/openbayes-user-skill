@@ -1,0 +1,14 @@
+# Environment variables
+.env.*
+!.env.*.example
+
+# Generated files (copied from monorepo shared/)
+scripts/_lib/
+scripts/run_graphql.sh
+references/concepts/
+references/i18n/
+references/openbayes-docs/
+references/graphql/
+references/graphql-discipline.md
+references/runtime-setup.md
+references/graphql-operations/common/whoami.graphql

@@ -1,0 +1,2870 @@
+{
+  "skill": "openbayes-user",
+  "operations": [
+    {
+      "tier": "approval",
+      "title": "签发个人访问令牌",
+      "effect": "生成一个等同账号密码的长期访问令牌，泄露即全账号失守",
+      "subject": "name",
+      "highlight": [
+        "expiresAt"
+      ],
+      "operation": "common/create-personal-access-token",
+      "operationName": "CreatePersonalAccessToken",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "userId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "name",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "expiresAt",
+          "type": "UTCDateTime",
+          "required": false,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "userId": "<from-bootstrap me.username>",
+            "name": "cli"
+          }
+        },
+        {
+          "name": "vars.explicit-expiry.json",
+          "vars": {
+            "userId": "<from-bootstrap me.username>",
+            "name": "ci-runner",
+            "expiresAt": "2027-08-15T00:00:00Z"
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "common/load-job-runtime-catalog",
+      "operationName": "JobRuntimesQuery",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "labels",
+          "type": "[String!]",
+          "required": false,
+          "list": true
+        },
+        {
+          "name": "id",
+          "type": "String",
+          "required": false,
+          "list": false
+        },
+        {
+          "name": "runtimeType",
+          "type": "[RuntimeType]",
+          "required": false,
+          "list": true
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "id": "zhangsan",
+            "labels": [
+              "MACHINE_LEARNING"
+            ],
+            "runtimeType": [
+              "CONTAINER"
+            ]
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "common/load-org-context",
+      "operationName": "LoadOrgContext",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "orgId",
+          "type": "ID!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "common/load-party-context",
+      "operationName": "LoadPartyContext",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "partyId",
+          "type": "ID!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "common/load-personal-access-tokens",
+      "operationName": "PersonalAccessTokens",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "userId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "userId": "<from-bootstrap me.username>"
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "common/load-quota",
+      "operationName": "LoadQuota",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "userId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "common/load-resource-catalog",
+      "operationName": "LoadResourceCatalog",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "partyId",
+          "type": "String",
+          "required": false,
+          "list": false
+        },
+        {
+          "name": "labels",
+          "type": "[String]",
+          "required": false,
+          "list": true
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "partyId": "zhangsan"
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "common/load-resource-plans",
+      "operationName": "LoadResourcePlans",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "resource",
+          "type": "String",
+          "required": false,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "resource": "vgpu"
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "common/load-runtime-catalog",
+      "operationName": "LoadRuntimeCatalog",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "partyId",
+          "type": "String",
+          "required": false,
+          "list": false
+        },
+        {
+          "name": "labels",
+          "type": "[String!]",
+          "required": false,
+          "list": true
+        },
+        {
+          "name": "runtimeType",
+          "type": "[RuntimeType]",
+          "required": false,
+          "list": true
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "partyId": "zhangsan",
+            "labels": [
+              "MACHINE_LEARNING"
+            ]
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "common/load-shared-resource-catalog",
+      "operationName": "LoadSharedResourceCatalog",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "partyId",
+          "type": "String",
+          "required": false,
+          "list": false
+        },
+        {
+          "name": "labels",
+          "type": "[String]",
+          "required": false,
+          "list": true
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "partyId": "zhangsan"
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "common/load-tag-catalog",
+      "operationName": "LoadTagCatalog",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "include",
+          "type": "TagReservedTypeInput!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "type",
+          "type": "TagStructureInput!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {}
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "common/load-transactions",
+      "operationName": "LoadTransactions",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "userId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "page",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "type",
+          "type": "[TransactionTypeInput]!",
+          "required": true,
+          "list": true
+        },
+        {
+          "name": "showOnlyAllowCreateFapiao",
+          "type": "Boolean!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "userId": "zhangsan",
+            "page": 1,
+            "type": [
+              "ALL"
+            ],
+            "showOnlyAllowCreateFapiao": false
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "common/load-unit-computation-plans",
+      "operationName": "LoadUnitComputationPlans",
+      "kind": "query",
+      "variables": [],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {}
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "common/load-usages",
+      "operationName": "LoadUsages",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "username",
+          "type": "ID!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "page",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "common/load-user-context",
+      "operationName": "LoadUserContext",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "username",
+          "type": "String!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "common/load-user-subscriptions",
+      "operationName": "LoadUserSubscriptions",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "username",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "category",
+          "type": "PlanCategoryInput",
+          "required": false,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "username": "<from-bootstrap me.username>",
+            "category": "ALL"
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "tier": "confirm",
+      "title": "吊销个人访问令牌",
+      "effect": "该 PAT 立即失效，用它登录的会话与脚本全部断开，且无法恢复",
+      "subject": "userId",
+      "highlight": [
+        "id"
+      ],
+      "operation": "common/revoke-personal-access-token",
+      "operationName": "RevokePersonalAccessToken",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "userId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "id",
+          "type": "String!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "userId": "<owner-username>",
+            "id": "<from load-personal-access-tokens>"
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "common/whoami",
+      "operationName": "Whoami",
+      "kind": "query",
+      "variables": [],
+      "unknownKeys": []
+    },
+    {
+      "tier": "confirm",
+      "title": "创建 job",
+      "effect": "启动新的计算任务或工作空间，并按所选资源开始计费",
+      "subject": "userId",
+      "highlight": [
+        "input"
+      ],
+      "operation": "compute/create-job",
+      "operationName": "CreateJob",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "userId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "input",
+          "type": "CreateJobInput",
+          "required": false,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "userId": "<owner-username>",
+            "input": {
+              "projectName": "<container-name>",
+              "mode": "WORKSPACE",
+              "newWorkspace": {},
+              "runtime": "<runtime-id-from-catalog>",
+              "resource": "<resource-name-from-catalog>"
+            }
+          }
+        },
+        {
+          "name": "vars.json",
+          "vars": {
+            "userId": "<owner-username>",
+            "input": {
+              "projectId": "<projectId>",
+              "mode": "WORKSPACE",
+              "newWorkspace": {},
+              "runtime": "<runtime-id-from-catalog>",
+              "resource": "<resource-name-from-catalog>",
+              "description": "vLLM serving experiment",
+              "dataBindings": [
+                {
+                  "name": "<owner>/<dataset>/<version>",
+                  "path": "/input0",
+                  "bindingType": "DATASET",
+                  "bindingAuth": "READ_ONLY"
+                }
+              ],
+              "ports": [
+                {
+                  "name": "vllm",
+                  "port": 8000
+                }
+              ],
+              "parameters": [
+                {
+                  "name": "HF_TOKEN",
+                  "value": "<token>",
+                  "isSecret": true
+                },
+                {
+                  "name": "NCCL_P2P_LEVEL",
+                  "value": "SYS"
+                },
+                {
+                  "name": "NCCL_SHM_DISABLE",
+                  "value": 1
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "tier": "confirm",
+      "title": "创建项目",
+      "effect": "新建一个项目，并应用所选描述与标签",
+      "subject": "name",
+      "highlight": [
+        "description",
+        "tagNames"
+      ],
+      "operation": "compute/create-project",
+      "operationName": "CreateProject",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "userId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "name",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "required": false,
+          "list": false
+        },
+        {
+          "name": "tagNames",
+          "type": "[TagInput]",
+          "required": false,
+          "list": true
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "userId": "zhangsan",
+            "name": "vision-demo",
+            "description": "图像分类实验",
+            "tagNames": [
+              {
+                "name": "vision"
+              }
+            ]
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "tier": "approval",
+      "title": "删除 job",
+      "effect": "该 job 连同它的运行记录一起永久删除，无法恢复；与停止（stop-job）不同，删除后不可再重启",
+      "subject": "jobId",
+      "highlight": [
+        "userId"
+      ],
+      "operation": "compute/job-delete",
+      "operationName": "DeleteJob",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "userId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "jobId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "userId": "zhangsan",
+            "jobId": "jKq2mVnQbR4"
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "compute/job-jupyter",
+      "operationName": "JobJupyter",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "jobId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "compute/job-metrics",
+      "operationName": "JobMetrics",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "userId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "jobId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "limit",
+          "type": "Int",
+          "required": false,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "userId": "zhangsan",
+            "jobId": "job-id"
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "compute/job-readme",
+      "operationName": "JobReadMe",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "jobId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "compute/load-job-context",
+      "operationName": "LoadJobContext",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "userId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "jobId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "userId": "zhangsan",
+            "jobId": "job-id"
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "compute/load-my-jobs",
+      "operationName": "LoadMyJobs",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "username",
+          "type": "ID!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "page",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "status",
+          "type": "[JobStatusInput]",
+          "required": false,
+          "list": true
+        },
+        {
+          "name": "q",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "modes",
+          "type": "[JobModeInput!]",
+          "required": false,
+          "list": true
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "username": "zhangsan",
+            "page": 1,
+            "status": [
+              "ALL"
+            ],
+            "q": ""
+          }
+        },
+        {
+          "name": "vars.running-workspaces.json",
+          "vars": {
+            "username": "zhangsan",
+            "status": [
+              "RUNNING"
+            ],
+            "q": "",
+            "modes": [
+              "WORKSPACE"
+            ]
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "compute/load-project-context",
+      "operationName": "LoadProjectContext",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "projectId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "projectId": "project-id"
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "compute/load-project-jobs",
+      "operationName": "LoadProjectJobs",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "projectId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "userId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "page",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "perPage",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "status",
+          "type": "[JobStatusInput!]",
+          "required": false,
+          "list": true
+        },
+        {
+          "name": "mode",
+          "type": "JobModeInput",
+          "required": false,
+          "list": false
+        },
+        {
+          "name": "labelKeys",
+          "type": "[String!]",
+          "required": false,
+          "list": true
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "projectId": "project-id",
+            "userId": "zhangsan",
+            "page": 1,
+            "perPage": 30,
+            "status": [
+              "ALL"
+            ],
+            "mode": "ALL"
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "tier": "approval",
+      "title": "删除 project",
+      "effect": "该 project 及其内部全部 job 被永久删除，无法恢复",
+      "subject": "name",
+      "highlight": [
+        "projectId"
+      ],
+      "operation": "compute/project-delete",
+      "operationName": "DeleteProject",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "userId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "projectId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "name",
+          "type": "String!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "userId": "zhangsan",
+            "projectId": "VZpaD9RA9kf",
+            "name": "my-probe-project"
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "compute/project-search-by-tags",
+      "operationName": "ProjectSearchByTags",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "ownerId",
+          "type": "ID!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "q",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "page",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "scope",
+          "type": "DatasetScopeInput",
+          "required": false,
+          "list": false
+        },
+        {
+          "name": "tagNames",
+          "type": "[String!]",
+          "required": false,
+          "list": true
+        },
+        {
+          "name": "write",
+          "type": "Boolean",
+          "required": false,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "ownerId": "zhangsan",
+            "q": "",
+            "page": 1,
+            "tagNames": [
+              "vision"
+            ]
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "compute/project-search-public",
+      "operationName": "ProjectSearchPublic",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "q",
+          "type": "String",
+          "required": false,
+          "list": false
+        },
+        {
+          "name": "page",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "tagNames",
+          "type": "[String!]",
+          "required": false,
+          "list": true
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "q": "llama",
+            "page": 1,
+            "tagNames": []
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "tier": "confirm",
+      "title": "修改项目权限",
+      "effect": "该项目的公开范围与读写权限立即改变",
+      "subject": "projectId",
+      "highlight": [
+        "input"
+      ],
+      "operation": "compute/project-update-permissions",
+      "operationName": "UpdateProjectEntityPermissions",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "ownerId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "projectId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "input",
+          "type": "UpdateProjectEntityPermission",
+          "required": false,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "ownerId": "zhangsan",
+            "projectId": "Qk3mVnXbR7z",
+            "input": {
+              "publicPermission": "PRIVATE",
+              "orgPermission": "ORG_READ_AND_DOWNLOAD"
+            }
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "compute/project-update-tags",
+      "operationName": "ProjectUpdateTags",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "ownerId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "projectId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "tagNames",
+          "type": "[String!]!",
+          "required": true,
+          "list": true
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "ownerId": "owner-id",
+            "projectId": "project-id",
+            "tagNames": [
+              "BUSINESS_CHANNEL_HPC",
+              "vision"
+            ]
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "tier": "confirm",
+      "title": "重启 workspace",
+      "effect": "重新启动已停止的容器，并按所选资源恢复计费",
+      "subject": "jobId",
+      "highlight": [
+        "input"
+      ],
+      "operation": "compute/restart-workspace",
+      "operationName": "RestartWorkspace",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "userId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "jobId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "input",
+          "type": "RestartWorkspaceInput!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "userId": "<owner-username>",
+            "jobId": "<jobId>",
+            "input": {
+              "runtime": "<runtime-id-from-job-context>",
+              "resource": "<resource-name-from-job-context>",
+              "dataBindings": [
+                {
+                  "name": "<owner>/<dataset>/<version>",
+                  "path": "/input0",
+                  "bindingType": "DATASET",
+                  "bindingAuth": "READ_ONLY"
+                }
+              ],
+              "ports": [
+                {
+                  "name": "vllm",
+                  "port": 8000
+                }
+              ],
+              "parameters": [
+                {
+                  "name": "HF_TOKEN",
+                  "isSecret": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "tier": "confirm",
+      "title": "停止 job",
+      "effect": "运行中的容器被停掉，运行时状态丢失，重启要等一段时间",
+      "subject": "jobId",
+      "operation": "compute/stop-job",
+      "operationName": "StopJob",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "userId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "jobId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "userId": "zhangsan",
+            "jobId": "jKq2mVnQbR4"
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "compute/update-job-description",
+      "operationName": "UpdateJobDescription",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "userId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "jobId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "input",
+          "type": "UpdateJobInput!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "userId": "zhangsan",
+            "jobId": "job-id",
+            "input": {
+              "description": "baseline run, lr=3e-4"
+            }
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "tier": "confirm",
+      "title": "修改端口暴露",
+      "effect": "容器对外暴露的端口立即变化，原访问地址可能失效",
+      "subject": "jobId",
+      "highlight": [
+        "ports"
+      ],
+      "operation": "compute/update-job-ports",
+      "operationName": "UpdateJobPorts",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "userId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "jobId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "ports",
+          "type": "[PortInput!]!",
+          "required": true,
+          "list": true
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "userId": "<owner-username>",
+            "jobId": "<jobId>",
+            "ports": [
+              {
+                "name": "gradio",
+                "port": 7860
+              }
+            ]
+          }
+        },
+        {
+          "name": "vars.json",
+          "vars": {
+            "userId": "<owner-username>",
+            "jobId": "<jobId>",
+            "ports": [
+              {
+                "name": "gradio",
+                "port": 7860
+              },
+              {
+                "name": "vllm",
+                "port": 8000
+              }
+            ]
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "tier": "confirm",
+      "title": "创建 dataset",
+      "effect": "新建一个 dataset，并应用所选类型、描述与标签",
+      "subject": "name",
+      "highlight": [
+        "category",
+        "tagNames"
+      ],
+      "operation": "dataset/dataset-create",
+      "operationName": "DatasetCreate",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "username",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "name",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "required": false,
+          "list": false
+        },
+        {
+          "name": "category",
+          "type": "DatasetCategory!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "tagNames",
+          "type": "[TagInput]",
+          "required": false,
+          "list": true
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "username": "zhangsan",
+            "name": "image-classification",
+            "description": "训练数据",
+            "category": "DATASET",
+            "tagNames": [
+              {
+                "name": "vision"
+              }
+            ]
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "tier": "approval",
+      "title": "删除 dataset",
+      "effect": "该 dataset 及其所有版本被永久删除，无法恢复",
+      "subject": "name",
+      "highlight": [
+        "datasetId"
+      ],
+      "operation": "dataset/dataset-delete",
+      "operationName": "DatasetDelete",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "username",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "datasetId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "name",
+          "type": "String!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "username": "zhangsan",
+            "datasetId": "VZpaD9RA9kf",
+            "name": "my-test-set"
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "dataset/dataset-read-detail",
+      "operationName": "DatasetReadDetail",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "datasetId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "datasetId": "dataset-id"
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "dataset/dataset-readme",
+      "operationName": "DatasetReadMe",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "datasetId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "version",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "dataset/dataset-search-all",
+      "operationName": "DatasetSearchAll",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "username",
+          "type": "ID!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "q",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "category",
+          "type": "[DatasetCategoryInput]",
+          "required": false,
+          "list": true
+        },
+        {
+          "name": "ownedPage",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "publicPage",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "tagNames",
+          "type": "[String!]",
+          "required": false,
+          "list": true
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "username": "zhangsan",
+            "q": "imagenet",
+            "category": [
+              "ALL"
+            ],
+            "ownedPage": 1,
+            "publicPage": 1,
+            "tagNames": []
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "dataset/dataset-search-owned",
+      "operationName": "DatasetSearchOwned",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "username",
+          "type": "ID!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "q",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "page",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "category",
+          "type": "[DatasetCategoryInput]",
+          "required": false,
+          "list": true
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "username": "zhangsan",
+            "q": "",
+            "page": 1,
+            "category": [
+              "ALL"
+            ]
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "dataset/dataset-search-party",
+      "operationName": "DatasetSearchParty",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "username",
+          "type": "ID!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "q",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "page",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "category",
+          "type": "[DatasetCategoryInput]",
+          "required": false,
+          "list": true
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "username": "org-id",
+            "q": "",
+            "page": 1,
+            "category": [
+              "ALL"
+            ]
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "dataset/dataset-search-public",
+      "operationName": "DatasetSearchPublic",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "q",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "page",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "category",
+          "type": "[DatasetCategoryInput]",
+          "required": false,
+          "list": true
+        },
+        {
+          "name": "tagNames",
+          "type": "[String!]",
+          "required": false,
+          "list": true
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "q": "coco",
+            "page": 1,
+            "category": [
+              "DATASET"
+            ],
+            "tagNames": []
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "dataset/dataset-update-info",
+      "operationName": "DatasetUpdateInfo",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "ownerId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "datasetId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "input",
+          "type": "UpdateDatasetInput!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "ownerId": "owner-id",
+            "datasetId": "dataset-id",
+            "input": {
+              "tagNames": [
+                {
+                  "name": "中文"
+                },
+                {
+                  "name": "vision"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "tier": "confirm",
+      "title": "修改 dataset 权限",
+      "effect": "该 dataset 的公开范围与读写权限立即改变",
+      "subject": "datasetId",
+      "highlight": [
+        "input"
+      ],
+      "operation": "dataset/dataset-update-permissions",
+      "operationName": "DatasetUpdatePermissions",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "ownerId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "datasetId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "input",
+          "type": "DatasetPermissionInput!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "ownerId": "zhangsan",
+            "datasetId": "VZpaD9RA9kf",
+            "input": {
+              "publicPermission": "PRIVATE",
+              "orgPermission": "ORG_READ_AND_DOWNLOAD"
+            }
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "tier": "confirm",
+      "title": "创建 dataset 版本",
+      "effect": "在指定 dataset 下新建一个空版本",
+      "subject": "datasetId",
+      "operation": "dataset/dataset-version-create-empty",
+      "operationName": "DatasetVersionCreateEmpty",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "datasetId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "datasetId": "dataset-id"
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "dataset/load-dataset-context",
+      "operationName": "LoadDatasetContext",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "userId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "datasetId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "version",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "userId": "zhangsan",
+            "datasetId": "dataset-id",
+            "version": 1
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "dataset/load-dataset-list",
+      "operationName": "LoadDatasetList",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "partyId",
+          "type": "ID!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "q",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "category",
+          "type": "[DatasetCategoryInput]",
+          "required": false,
+          "list": true
+        },
+        {
+          "name": "scope",
+          "type": "DatasetScopeInput",
+          "required": false,
+          "list": false
+        },
+        {
+          "name": "page",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "publicPage",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "partyId": "zhangsan",
+            "q": "",
+            "category": [
+              "ALL"
+            ],
+            "scope": "ALL",
+            "page": 1,
+            "publicPage": 1
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "org/list-my-orgs",
+      "operationName": "ListMyOrgs",
+      "kind": "query",
+      "variables": [],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {}
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "org/load-org-detail",
+      "operationName": "LoadOrgDetail",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "orgId",
+          "type": "ID!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "orgId": "org-id"
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "org/load-org-members",
+      "operationName": "LoadOrgMembers",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "orgId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "page",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "perPage",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "orgId": "org-id",
+            "page": 1,
+            "perPage": 30
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "serving/serving-apikey-create",
+      "operationName": "ServingApiKeyCreate",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "userId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "name",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "servingIds",
+          "type": "[String!]",
+          "required": false,
+          "list": true
+        },
+        {
+          "name": "keyType",
+          "type": "KeyType!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "userId": "zhangsan",
+            "name": "demo-key",
+            "servingIds": [
+              "vycpv1a7wiky"
+            ],
+            "keyType": "SERVING"
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "serving/serving-apikey-list",
+      "operationName": "ServingApiKeyList",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "userId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "page",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "tier": "confirm",
+      "title": "吊销 serving API key",
+      "effect": "用这个 key 的调用立即失败，线上调用方会断",
+      "subject": "userId",
+      "highlight": [
+        "id"
+      ],
+      "operation": "serving/serving-apikey-revoke",
+      "operationName": "ServingApiKeyRevoke",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "userId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "id",
+          "type": "String!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "userId": "zhangsan",
+            "id": "9Xk2mVnQbR4"
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "tier": "confirm",
+      "title": "更新 serving API key",
+      "effect": "key 的名称、类型与绑定范围立即变化，线上调用方可能开始失败",
+      "subject": "userId",
+      "highlight": [
+        "id",
+        "input"
+      ],
+      "operation": "serving/serving-apikey-update",
+      "operationName": "ServingApiKeyUpdate",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "userId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "id",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "input",
+          "type": "UpdateApiKeyInput!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "userId": "zhangsan",
+            "id": "9Xk2mVnQbR4",
+            "input": {
+              "name": "demo-key",
+              "keyType": "SERVING",
+              "servingIds": [
+                "vycpv1a7wiky"
+              ]
+            }
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "tier": "confirm",
+      "title": "创建 serving",
+      "effect": "新建 serving 资源，部署版本后按用量计费",
+      "subject": "input.name",
+      "operation": "serving/serving-create",
+      "operationName": "ServingCreate",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "username",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "input",
+          "type": "CreateServingInput!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "username": "zhangsan",
+            "input": {
+              "name": "my-demo-serving",
+              "runtime": "<runtime-id-from-catalog>",
+              "resource": "<resource-id-from-catalog>",
+              "dataBindings": [],
+              "replica": 1
+            }
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "tier": "approval",
+      "title": "删除 serving",
+      "effect": "该 serving 被永久删除，无法恢复",
+      "subject": "name",
+      "highlight": [
+        "id"
+      ],
+      "operation": "serving/serving-delete",
+      "operationName": "ServingDelete",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "username",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "id",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "name",
+          "type": "String!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "username": "zhangsan",
+            "id": "vycpv1a7wiky",
+            "name": "my-demo-serving"
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "serving/serving-list",
+      "operationName": "ServingList",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "username",
+          "type": "ID!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "page",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "q",
+          "type": "String",
+          "required": false,
+          "list": false
+        },
+        {
+          "name": "status",
+          "type": "[ServingVersionStatusInput!]",
+          "required": false,
+          "list": true
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "username": "zhangsan",
+            "page": 1,
+            "q": "",
+            "status": [
+              "ALL"
+            ]
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "serving/serving-observe-events",
+      "operationName": "ServingObserveEvents",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "username",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "id",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "version",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "from",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "to",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "tail",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "serving/serving-observe-llm-events",
+      "operationName": "ServingObserveLLMEvents",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "username",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "id",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "version",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "from",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "to",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "tail",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "serving/serving-observe-llm-latency",
+      "operationName": "ServingObserveLLMLatency",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "username",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "id",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "version",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "from",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "to",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "resolution",
+          "type": "String!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "serving/serving-observe-llm-total-token",
+      "operationName": "ServingObserveLLMTotalToken",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "username",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "id",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "version",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "from",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "to",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "resolution",
+          "type": "String!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "serving/serving-observe-llm-ttft",
+      "operationName": "ServingObserveLLMTTFT",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "username",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "id",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "version",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "from",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "to",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "resolution",
+          "type": "String!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "serving/serving-observe-metrics",
+      "operationName": "ServingObserveMetrics",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "username",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "id",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "version",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "from",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "to",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "resolution",
+          "type": "String!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "serving/serving-observe-traces",
+      "operationName": "ServingObserveTraces",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "username",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "id",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "version",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "from",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "to",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "resolution",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "method",
+          "type": "String!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "serving/serving-preflight-load-job",
+      "operationName": "ServingPreflightLoadJob",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "userId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "jobId",
+          "type": "String!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "userId": "zhangsan",
+            "jobId": "job-id"
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "serving/serving-read-overview",
+      "operationName": "ServingReadOverview",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "username",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "id",
+          "type": "String!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "username": "zhangsan",
+            "id": "vycpv1a7wiky"
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "operation": "serving/serving-read-version",
+      "operationName": "ServingReadVersion",
+      "kind": "query",
+      "variables": [
+        {
+          "name": "username",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "id",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "version",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "username": "zhangsan",
+            "id": "vycpv1a7wiky",
+            "version": 3
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "tier": "confirm",
+      "title": "更新 serving 配置",
+      "effect": "名称、计费率或鉴权开关立即变化，鉴权变化会断线上调用方",
+      "subject": "id",
+      "highlight": [
+        "input"
+      ],
+      "operation": "serving/serving-update",
+      "operationName": "ServingUpdate",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "username",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "id",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "input",
+          "type": "UpdateServingInput!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "username": "zhangsan",
+            "id": "vycpv1a7wiky",
+            "input": {
+              "needAuthorization": true
+            }
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "tier": "confirm",
+      "title": "部署 serving 版本",
+      "effect": "部署一个新版本上线，按所选资源与副本数计费",
+      "subject": "id",
+      "highlight": [
+        "input"
+      ],
+      "operation": "serving/serving-version-create",
+      "operationName": "ServingVersionCreate",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "username",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "id",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "input",
+          "type": "CreateServingVersionInput!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "username": "zhangsan",
+            "id": "vycpv1a7wiky",
+            "input": {
+              "runtime": "<runtime-id-from-catalog>",
+              "resource": "<resource-id-from-catalog>",
+              "dataBindings": [],
+              "replica": 1
+            }
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "tier": "approval",
+      "title": "删除 serving 版本",
+      "effect": "该版本被永久删除，无法恢复",
+      "subject": "id",
+      "highlight": [
+        "version"
+      ],
+      "operation": "serving/serving-version-delete",
+      "operationName": "ServingVersionDelete",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "username",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "id",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "version",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "username": "zhangsan",
+            "id": "vycpv1a7wiky",
+            "version": 3
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "tier": "confirm",
+      "title": "停止 serving 版本",
+      "effect": "该版本停止服务，线上调用立即失败，重启慢且状态丢失",
+      "subject": "id",
+      "highlight": [
+        "version"
+      ],
+      "operation": "serving/serving-version-stop",
+      "operationName": "ServingVersionStop",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "username",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "id",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "version",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.json",
+          "vars": {
+            "username": "zhangsan",
+            "id": "vycpv1a7wiky",
+            "version": 3
+          }
+        }
+      ],
+      "unknownKeys": []
+    },
+    {
+      "tier": "confirm",
+      "title": "更新 serving 版本配置",
+      "effect": "副本数与规格立即变化，资源开销随之改变",
+      "subject": "id",
+      "highlight": [
+        "version",
+        "input"
+      ],
+      "operation": "serving/serving-version-update",
+      "operationName": "ServingVersionUpdate",
+      "kind": "mutation",
+      "variables": [
+        {
+          "name": "username",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "id",
+          "type": "String!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "version",
+          "type": "Int!",
+          "required": true,
+          "list": false
+        },
+        {
+          "name": "input",
+          "type": "UpdateServingVersionInput!",
+          "required": true,
+          "list": false
+        }
+      ],
+      "examples": [
+        {
+          "name": "vars.restart.json",
+          "vars": {
+            "username": "<owner>",
+            "id": "<servingId>",
+            "version": 8,
+            "input": {
+              "replica": 1
+            }
+          }
+        },
+        {
+          "name": "vars.scale.json",
+          "vars": {
+            "username": "<owner>",
+            "id": "<servingId>",
+            "version": 8,
+            "input": {
+              "replica": 3
+            }
+          }
+        },
+        {
+          "name": "vars.describe.json",
+          "vars": {
+            "username": "<owner>",
+            "id": "<servingId>",
+            "version": 8,
+            "input": {
+              "description": "post-mortem: pre-debt config, restarted 2026-05-25"
+            }
+          }
+        }
+      ],
+      "unknownKeys": []
+    }
+  ]
+}

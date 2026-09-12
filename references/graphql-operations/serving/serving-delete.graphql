@@ -1,0 +1,5 @@
+mutation ServingDelete($username: String!, $id: String!, $name: String!) {
+  deleteServing(userId: $username, servingId: $id, name: $name) {
+    success
+  }
+}

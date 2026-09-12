@@ -1,0 +1,27 @@
+query LoadQuota($userId: String!) {
+  estimatedQuota(userId: $userId) {
+    updatedAt
+    sizeLimitOfStorage
+    sizeLimitOfUpload
+    storageQuota {
+      currentUsedMegaBytes
+      totalMegaBytes
+      remainMegaBytes
+    }
+    computationQuota {
+      key
+      value {
+        availableMinutes
+        debtMinutes
+        maxQuotaReservedMonth
+      }
+    }
+    sharedComputationQuota {
+      sharedQuota {
+        resources
+        totalMinutes
+        currentMinutes
+      }
+    }
+  }
+}

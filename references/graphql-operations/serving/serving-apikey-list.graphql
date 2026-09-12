@@ -1,0 +1,25 @@
+query ServingApiKeyList($userId: String!, $page: Int! = 1) {
+  apiKeys(userId: $userId, page: $page) {
+    data {
+      id
+      key
+      name
+      createdAt
+      lastUsedAt
+      creatorId
+      ... on ServingApiKey {
+        servings {
+          id
+          name
+          needAuthorization
+        }
+      }
+    }
+    pageInfo {
+      current
+      total
+      next
+      prev
+    }
+  }
+}

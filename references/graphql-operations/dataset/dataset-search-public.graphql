@@ -1,0 +1,42 @@
+query DatasetSearchPublic(
+  $q: String! = ""
+  $page: Int! = 1
+  $category: [DatasetCategoryInput] = [ALL]
+  $tagNames: [String!] = []
+) {
+  publicDatasets(q: $q, page: $page, category: $category, tagNames: $tagNames) {
+    data {
+      id
+      name
+      category
+      latestVersion
+      size
+      owner {
+        id
+        displayName
+      }
+      permissions {
+        publicPermission
+      }
+      latestDatasetVersion {
+        id
+        version
+        semanticBindingName
+        canBindJob
+      }
+      tags {
+        name
+      }
+      links {
+        name
+        value
+      }
+    }
+    pageInfo {
+      current
+      total
+      next
+      prev
+    }
+  }
+}

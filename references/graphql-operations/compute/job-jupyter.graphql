@@ -1,0 +1,3 @@
+query JobJupyter($jobId: String!) {
+  jobJupyter(jobId: $jobId)
+}

@@ -1,0 +1,16 @@
+query JobMetrics($userId: String!, $jobId: String!, $limit: Int = 500) {
+  job(userId: $userId, jobId: $jobId) {
+    __typename
+    id
+    name
+    status
+    metrics(limit: $limit) {
+      name
+      isSystemMetrics
+      values {
+        value
+        createdAt
+      }
+    }
+  }
+}

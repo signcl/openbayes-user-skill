@@ -1,0 +1,8 @@
+mutation ServingVersionStop($username: String!, $id: String!, $version: Int!) {
+  stopServingVersion(userId: $username, servingId: $id, version: $version) {
+    userId
+    servingId
+    version
+    status
+  }
+}

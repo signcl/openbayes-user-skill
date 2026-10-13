@@ -1,0 +1,7 @@
+mutation ServingVersionCreate($username: String!, $id: String!, $input: CreateServingVersionInput!) {
+  createServingVersion(userId: $username, servingId: $id, input: $input) {
+    userId
+    servingId
+    version
+  }
+}

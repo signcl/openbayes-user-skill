@@ -1,0 +1,68 @@
+query LoadDatasetList(
+  $partyId: ID!
+  $q: String! = ""
+  $category: [DatasetCategoryInput] = [ALL]
+  $scope: DatasetScopeInput = ALL
+  $page: Int! = 1
+  $publicPage: Int! = 1
+) {
+  party(id: $partyId) {
+    id
+    datasets(q: $q, category: $category, scope: $scope, page: $page) {
+      data {
+        id
+        name
+        category
+        permissions {
+          publicPermission
+          orgPermission
+        }
+        latestVersion
+        size
+        latestDatasetVersion {
+          id
+          version
+          semanticBindingName
+          canBindJob
+          canBeBoundWithWritePermission
+        }
+        links {
+          name
+          value
+        }
+      }
+      pageInfo {
+        current
+        total
+        next
+        prev
+      }
+    }
+  }
+  publicDatasets(q: $q, category: $category, page: $publicPage) {
+    data {
+      id
+      name
+      category
+      latestVersion
+      size
+      latestDatasetVersion {
+        id
+        version
+        semanticBindingName
+        canBindJob
+        canBeBoundWithWritePermission
+      }
+      links {
+        name
+        value
+      }
+    }
+    pageInfo {
+      current
+      total
+      next
+      prev
+    }
+  }
+}

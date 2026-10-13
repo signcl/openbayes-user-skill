@@ -1,0 +1,28 @@
+mutation DatasetCreate(
+  $username: String!
+  $name: String!
+  $description: String
+  $category: DatasetCategory! = DATASET
+  $tagNames: [TagInput] = []
+) {
+  createDataset(
+    userId: $username
+    name: $name
+    description: $description
+    category: $category
+    tagNames: $tagNames
+  ) {
+    id
+    userId
+    name
+    category
+    latestVersion
+    tags {
+      name
+    }
+    permissions {
+      publicPermission
+      orgPermission
+    }
+  }
+}

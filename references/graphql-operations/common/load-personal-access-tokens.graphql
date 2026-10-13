@@ -1,0 +1,11 @@
+query PersonalAccessTokens($userId: String!) {
+  personalAccessTokens(userId: $userId) {
+    id
+    name
+    ownerId
+    createdAt
+    expiresAt
+    lastUsedAt
+    revokedAt
+  }
+}

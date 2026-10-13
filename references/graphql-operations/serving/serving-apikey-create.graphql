@@ -1,0 +1,5 @@
+# Returns the plaintext secret as a bare String — the only time it is returned.
+# Print it to the user in full. Full rules: ../../workflows/serving/manage-apikeys.md
+mutation ServingApiKeyCreate($userId: String!, $name: String!, $servingIds: [String!], $keyType: KeyType!) {
+  createApiKey(userId: $userId, name: $name, servingIds: $servingIds, keyType: $keyType)
+}

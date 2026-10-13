@@ -1,0 +1,65 @@
+query LoadUsages($username: ID!, $page: Int! = 1) {
+  party(id: $username) {
+    usages(page: $page) {
+      data {
+        __typename
+        id
+        createdAt
+        originalOwnerId
+
+        ... on DatasetUsage {
+          updatedSize
+        }
+
+        ... on DatasetVersionUsage {
+          updatedSize
+        }
+
+        ... on JobDataUsage {
+          updatedSize
+        }
+
+        ... on ProjectDataUsage {
+          updatedSize
+        }
+
+        ... on JobDiscountUsage {
+          startedAt
+          endAt
+          duration
+        }
+
+        ... on JobUsage {
+          startedAt
+          endAt
+          duration
+        }
+
+        ... on ServingDataUsage {
+          updatedSize
+          versionReferenceId
+        }
+
+        ... on ServingUsage {
+          versionReferenceId
+          replica
+          startedAt
+          endAt
+        }
+      }
+
+      pageInfo {
+        ...pageInfo
+      }
+    }
+  }
+}
+
+fragment pageInfo on Pager {
+  first
+  last
+  current
+  prev
+  next
+  total
+}

@@ -1,0 +1,29 @@
+query ServingObserveMetrics(
+  $username: String!
+  $id: String!
+  $version: Int!
+  $from: String!
+  $to: String!
+  $resolution: String!
+) {
+  servingVersion(userId: $username, servingId: $id, version: $version) {
+    servingId
+    version
+    metricsByPod(from: $from, to: $to, resolution: $resolution) {
+      podId
+      metrics {
+        time
+        memory
+        cpu {
+          user
+          system
+        }
+        gpu {
+          util
+          vram
+          vramutil
+        }
+      }
+    }
+  }
+}

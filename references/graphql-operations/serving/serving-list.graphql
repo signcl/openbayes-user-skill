@@ -1,0 +1,68 @@
+query ServingList(
+  $username: ID!
+  $page: Int! = 1
+  $q: String = ""
+  $status: [ServingVersionStatusInput!] = [ALL]
+) {
+  party(id: $username) {
+    id
+    servings(page: $page, q: $q, status: $status) {
+      data {
+        id
+        name
+        status
+        description
+        lastIncreasedVersion
+        createdAt
+        activeVersions {
+          version
+          status
+          subStatus
+          startedAt
+          endAt
+          replica
+          resource {
+            name
+            verboseName
+            gpuResource
+            memory
+          }
+          servingVersionInstances {
+            ready
+          }
+        }
+        latestServingVersion {
+          version
+          status
+          subStatus
+          startedAt
+          endAt
+          resource {
+            name
+            verboseName
+          }
+        }
+        creator {
+          id
+          imageUrl
+        }
+        owner {
+          id
+          imageUrl
+        }
+        links {
+          name
+          value
+        }
+      }
+      pageInfo {
+        current
+        total
+        next
+        prev
+        first
+        last
+      }
+    }
+  }
+}

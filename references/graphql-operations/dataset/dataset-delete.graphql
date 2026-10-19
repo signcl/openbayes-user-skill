@@ -1,0 +1,5 @@
+mutation DatasetDelete($username: String!, $datasetId: String!, $name: String!) {
+  deleteDataset(userId: $username, datasetId: $datasetId, name: $name) {
+    success
+  }
+}

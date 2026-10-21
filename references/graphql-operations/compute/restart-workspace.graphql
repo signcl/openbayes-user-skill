@@ -1,0 +1,25 @@
+mutation RestartWorkspace($userId: String!, $jobId: String!, $input: RestartWorkspaceInput!) {
+  restartWorkspace(userId: $userId, jobId: $jobId, input: $input) {
+    __typename
+    id
+    name
+    mode
+    status
+    subStatus
+    owner {
+      id
+      displayName
+      ... on User {
+        username
+      }
+    }
+    project {
+      id
+      name
+    }
+    ports {
+      name
+      port
+    }
+  }
+}

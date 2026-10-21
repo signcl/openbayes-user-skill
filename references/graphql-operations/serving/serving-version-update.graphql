@@ -1,0 +1,8 @@
+mutation ServingVersionUpdate($username: String!, $id: String!, $version: Int!, $input: UpdateServingVersionInput!) {
+  updateServingVersion(userId: $username, servingId: $id, version: $version, input: $input) {
+    servingId
+    version
+    replica
+    description
+  }
+}

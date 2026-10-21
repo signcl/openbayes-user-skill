@@ -1,0 +1,5 @@
+mutation ServingApiKeyUpdate($userId: String!, $id: String!, $input: UpdateApiKeyInput!) {
+  updateApiKey(userId: $userId, id: $id, input: $input) {
+    id
+  }
+}

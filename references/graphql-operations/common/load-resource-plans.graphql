@@ -1,0 +1,32 @@
+query LoadResourcePlans($resource: String) {
+  plans(
+    category: [UNIT_COMPUTATION, CONTAINER_TIME_BOXED_COMPUTATION]
+    resource: $resource
+  ) {
+    id
+    name
+    available
+    category
+    price {
+      amount
+      currency
+    }
+    originalPrice {
+      amount
+      currency
+    }
+    ... on UnitComputationPlan {
+      resource {
+        name
+        verboseName
+      }
+    }
+    ... on ContainerTimeBoxedComputationPlan {
+      duration
+      resource {
+        name
+        verboseName
+      }
+    }
+  }
+}

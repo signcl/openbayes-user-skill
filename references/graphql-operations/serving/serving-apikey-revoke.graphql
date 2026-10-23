@@ -1,0 +1,5 @@
+mutation ServingApiKeyRevoke($userId: String!, $id: String!) {
+  revokeApiKey(userId: $userId, id: $id) {
+    success
+  }
+}

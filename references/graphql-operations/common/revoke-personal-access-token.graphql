@@ -1,0 +1,5 @@
+mutation RevokePersonalAccessToken($userId: String!, $id: String!) {
+  revokePersonalAccessToken(userId: $userId, id: $id) {
+    success
+  }
+}

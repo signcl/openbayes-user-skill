@@ -1,0 +1,6 @@
+mutation ServingCreate($username: String!, $input: CreateServingInput!) {
+  createServing(userId: $username, input: $input) {
+    id
+    name
+  }
+}

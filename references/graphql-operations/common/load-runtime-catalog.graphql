@@ -1,0 +1,19 @@
+query LoadRuntimeCatalog(
+  $partyId: String
+  $labels: [String!]
+  $runtimeType: [RuntimeType] = [CONTAINER, VM]
+) {
+  normalClusterRuntimes(
+    partyId: $partyId
+    labels: $labels
+    runtimeType: $runtimeType
+  ) {
+    name
+    framework
+    version
+    device
+    deprecated
+    labels
+    runtimeType
+  }
+}

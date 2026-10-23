@@ -1,0 +1,54 @@
+query ServingPreflightLoadJob($userId: String!, $jobId: String!) {
+  job(userId: $userId, jobId: $jobId) {
+    id
+    name
+    description
+    status
+    mode
+    runtime {
+      framework
+      version
+      device
+    }
+    resource {
+      name
+      verboseName
+    }
+    links {
+      name
+      value
+    }
+    dataBindings {
+      __typename
+      id
+      mountPath
+      semanticBindingName
+      ... on DatasetBinding {
+        bindingAuth
+        datasetVersion {
+          id
+          version
+          semanticBindingName
+          canBindJob
+          canBeBoundWithWritePermission
+          dataset {
+            id
+            category
+            permissions {
+              publicPermission
+              orgPermission
+            }
+          }
+        }
+      }
+      ... on JobOutputBinding {
+        job {
+          id
+          owner {
+            id
+          }
+        }
+      }
+    }
+  }
+}

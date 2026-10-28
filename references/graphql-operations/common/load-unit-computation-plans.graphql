@@ -1,0 +1,43 @@
+query LoadUnitComputationPlans {
+  plans(category: [UNIT_COMPUTATION]) {
+    id
+    name
+    description
+    available
+    published
+    free
+    discount
+    price {
+      amount
+      currency
+    }
+    originalPrice {
+      amount
+      currency
+    }
+    ... on UnitComputationPlan {
+      resource {
+        name
+        verboseName
+        gpuResource
+        memory
+        cpu {
+          millicores
+          count
+          type
+        }
+        gpu {
+          count
+          memory
+          type
+          name
+          verboseName
+        }
+        disk {
+          size
+          type
+        }
+      }
+    }
+  }
+}

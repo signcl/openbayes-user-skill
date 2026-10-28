@@ -1,0 +1,16 @@
+mutation DatasetUpdateInfo(
+  $ownerId: String!
+  $datasetId: String!
+  $input: UpdateDatasetInput!
+) {
+  updateDatasetInfo(userId: $ownerId, datasetId: $datasetId, input: $input) {
+    id
+    name
+    description
+    category
+    tags {
+      name
+    }
+    updatedAt
+  }
+}

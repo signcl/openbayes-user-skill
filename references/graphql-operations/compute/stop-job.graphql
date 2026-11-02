@@ -1,0 +1,11 @@
+mutation StopJob($userId: String!, $jobId: String!) {
+  stopJob(userId: $userId, jobId: $jobId) {
+    __typename
+    id
+    name
+    mode
+    status
+    subStatus
+    cancellingAt
+  }
+}

@@ -1,0 +1,52 @@
+query DatasetReadDetail($datasetId: String!) {
+  dataset(datasetId: $datasetId) {
+    id
+    name
+    category
+    description
+    latestVersion
+    size
+    owner {
+      id
+      displayName
+      ... on User {
+        username
+      }
+      ... on Org {
+        displayName
+      }
+    }
+    creator {
+      id
+      username
+    }
+    canEdit
+    canUpdatePermissions
+    permissions {
+      publicPermission
+      orgPermission
+      canPublicRead
+      canRead
+      canWrite
+    }
+    versions {
+      id
+      version
+      status
+      subStatus
+      description
+      semanticBindingName
+      canBindJob
+      canBeBoundWithWritePermission
+      createdAt
+      size
+    }
+    tags {
+      name
+    }
+    links {
+      name
+      value
+    }
+  }
+}

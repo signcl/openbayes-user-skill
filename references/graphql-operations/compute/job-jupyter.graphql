@@ -1,0 +1,4 @@
+# 只对已停止的 job 有内容：RUNNING 的 workspace 返回 null（即使 home 里已有 .ipynb），停止后才填上。别据此说容器是空的
+query JobJupyter($jobId: String!) {
+  jobJupyter(jobId: $jobId)
+}

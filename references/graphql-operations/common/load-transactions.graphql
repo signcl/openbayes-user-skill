@@ -1,0 +1,55 @@
+query LoadTransactions(
+  $userId: String!
+  $page: Int! = 1
+  $type: [TransactionTypeInput]! = [ALL]
+  $showOnlyAllowCreateFapiao: Boolean! = false
+) {
+  userTransactions(
+    userId: $userId
+    page: $page
+    type: $type
+    showOnlyAllowCreateFapiao: $showOnlyAllowCreateFapiao
+  ) {
+    data {
+      id
+      type
+      account
+      amount {
+        amount
+        currency
+      }
+      balance {
+        amount
+        currency
+      }
+      createdAt
+      description {
+        id
+        descType
+      }
+      context
+      allowCreateFapiao
+      hasFapiao
+      owner {
+        id
+        displayName
+        imageUrl
+        ... on User {
+          type
+          hasMembership
+        }
+        ... on Org {
+          type
+        }
+      }
+    }
+    pageInfo {
+      first
+      last
+      current
+      prev
+      next
+      total
+    }
+  }
+}

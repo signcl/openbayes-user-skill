@@ -1,0 +1,113 @@
+query LoadJobContext($userId: String!, $jobId: String!) {
+  job(userId: $userId, jobId: $jobId) {
+    __typename
+    id
+    batchParentId
+    name
+    description
+    version
+    size
+    systemSize
+    mode
+    status
+    subStatus
+    createdAt
+    startedAt
+    endAt
+    cancellingAt
+    canEdit
+    canStop
+    canStart
+    canCreateSnapshot
+    useRDMADevices
+    resource {
+      name
+      verboseName
+      gpuResource
+    }
+    runtime {
+      framework
+      version
+      device
+    }
+    owner {
+      id
+      displayName
+      ... on User {
+        username
+      }
+    }
+    creator {
+      id
+      username
+    }
+    project {
+      id
+      name
+      idleTimeoutSeconds
+      canCreateJob
+      canOnlyAccessPublicResource
+      tags {
+        name
+      }
+    }
+    ... on Workspace {
+      isPersistent
+    }
+    dataBindings {
+      __typename
+      id
+      mountPath
+      semanticBindingName
+      isDeleted
+      isPublic
+      ... on DatasetBinding {
+        bindingAuth
+        datasetVersion {
+          id
+          version
+          name
+          semanticBindingName
+          canBindJob
+          canBeBoundWithWritePermission
+          owner {
+            id
+            displayName
+            ... on User {
+              username
+            }
+          }
+        }
+      }
+      ... on JobOutputBinding {
+        job {
+          id
+          name
+          mode
+          status
+          owner {
+            id
+            displayName
+            ... on User {
+              username
+            }
+          }
+        }
+      }
+    }
+    parameters {
+      name
+      value
+      isSecret
+    }
+    links {
+      name
+      value
+    }
+    password
+    ports {
+      name
+      port
+    }
+  }
+}

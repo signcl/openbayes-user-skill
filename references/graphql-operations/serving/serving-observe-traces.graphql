@@ -1,0 +1,25 @@
+query ServingObserveTraces(
+  $username: String!
+  $id: String!
+  $version: Int!
+  $from: String!
+  $to: String!
+  $resolution: String!
+  $method: String!
+) {
+  servingVersion(userId: $username, servingId: $id, version: $version) {
+    servingId
+    version
+    traces(from: $from, to: $to, resolution: $resolution, method: $method) {
+      time
+      count
+      avg
+      max
+      p50
+      p75
+      p90
+      p95
+      p99
+    }
+  }
+}

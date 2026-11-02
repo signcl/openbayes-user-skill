@@ -1,0 +1,14 @@
+query JobRuntimesQuery(
+  $labels: [String!]
+  $id: String
+  $runtimeType: [RuntimeType]
+) {
+  normalClusterRuntimes(labels: $labels, partyId: $id, runtimeType: $runtimeType) {
+    name
+    framework
+    version
+    device
+    deprecated
+    labels
+  }
+}

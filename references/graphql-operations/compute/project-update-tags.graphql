@@ -1,0 +1,18 @@
+mutation ProjectUpdateTags(
+  $ownerId: String!
+  $projectId: String!
+  $tagNames: [String!]!
+) {
+  updateProject(
+    userId: $ownerId
+    projectId: $projectId
+    input: { tagNames: $tagNames }
+  ) {
+    id
+    name
+    tags {
+      name
+    }
+    updatedAt
+  }
+}

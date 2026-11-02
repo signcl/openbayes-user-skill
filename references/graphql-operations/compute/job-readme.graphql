@@ -1,0 +1,4 @@
+# null ≠ 失败：只代表 /openbayes/home/README.md 不存在；教程正文常在 .ipynb，走 jobJupyter
+query JobReadMe($jobId: String!) {
+  jobReadMe(jobId: $jobId)
+}

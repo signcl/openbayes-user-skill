@@ -1,0 +1,17 @@
+mutation DatasetUpdatePermissions(
+  $ownerId: String!
+  $datasetId: String!
+  $input: DatasetPermissionInput!
+) {
+  updateDatasetPermissions(userId: $ownerId, datasetId: $datasetId, input: $input) {
+    id
+    permissions {
+      publicPermission
+      orgPermission
+      canPublicRead
+      canRead
+      canWrite
+      canDownload
+    }
+  }
+}

@@ -1,0 +1,29 @@
+mutation CreateJob($userId: String!, $input: CreateJobInput) {
+  createJob(userId: $userId, input: $input) {
+    __typename
+    id
+    name
+    mode
+    status
+    subStatus
+    owner {
+      id
+      displayName
+      ... on User {
+        username
+      }
+    }
+    project {
+      id
+      name
+    }
+    links {
+      name
+      value
+    }
+    ports {
+      name
+      port
+    }
+  }
+}

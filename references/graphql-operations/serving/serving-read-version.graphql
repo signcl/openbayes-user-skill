@@ -1,0 +1,38 @@
+query ServingReadVersion($username: String!, $id: String!, $version: Int!) {
+  servingVersion(userId: $username, servingId: $id, version: $version) {
+    servingId
+    version
+    status
+    subStatus
+    description
+    live
+    runtime {
+      framework
+      version
+      device
+    }
+    resource {
+      name
+      verboseName
+    }
+    replica
+    canStop
+    canDestroy
+    servingVersionInstances {
+      name
+      status
+      ready
+      restartCount
+      node
+      ip
+    }
+    dataBindings {
+      mountPath
+      path
+      name
+      version
+      type
+      bindingAuth
+    }
+  }
+}

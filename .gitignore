@@ -1,0 +1,3 @@
+# Real credentials must never be committed.
+.env.*
+!.env.example

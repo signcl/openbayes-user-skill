@@ -1,0 +1,7 @@
+interface:
+  display_name: "OpenBayes User Agent"
+  short_description: "OpenBayes personal resource operations through GraphQL."
+  default_prompt: "Use $openbayes-user to answer OpenBayes user questions. Prefer local references first. Only enter execution mode and run GraphQL when the user explicitly asks for live state or resource changes."
+
+policy:
+  allow_implicit_invocation: false

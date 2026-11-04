@@ -1,0 +1,40 @@
+query DatasetSearchParty(
+  $username: ID!
+  $q: String! = ""
+  $page: Int! = 1
+  $category: [DatasetCategoryInput] = [ALL]
+) {
+  party(id: $username) {
+    id
+    datasets(q: $q, page: $page, category: $category) {
+      data {
+        id
+        name
+        category
+        latestVersion
+        size
+        owner {
+          id
+          displayName
+        }
+        permissions {
+          publicPermission
+          orgPermission
+        }
+        tags {
+          name
+        }
+        links {
+          name
+          value
+        }
+      }
+      pageInfo {
+        current
+        total
+        next
+        prev
+      }
+    }
+  }
+}

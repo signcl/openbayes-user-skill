@@ -1,0 +1,56 @@
+query LoadOrgContext($orgId: ID!) {
+  org(id: $orgId) {
+    id
+    displayName
+    description
+    features
+    limitations {
+      quota {
+        uploadSizeLimit
+      }
+      jobs {
+        cacheCount
+        workspaceAvailableHours
+      }
+      dataset {
+        publicItem {
+          current
+          limit
+        }
+        privateItem {
+          current
+          limit
+        }
+      }
+      project {
+        publicItem {
+          current
+          limit
+        }
+        privateItem {
+          current
+          limit
+        }
+      }
+      resources {
+        key
+        value {
+          current
+          limit
+          freeCount
+        }
+      }
+      gpus {
+        key
+        value {
+          current
+          limit
+        }
+      }
+      unfinishedSnapshots {
+        current
+        limit
+      }
+    }
+  }
+}

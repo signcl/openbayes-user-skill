@@ -1,0 +1,28 @@
+query ListMyOrgs {
+  me {
+    id
+    username
+    orgs {
+      id
+      role
+      createdAt
+      expiredAt
+      canRemove
+      canChangeRole
+      org {
+        id
+        displayName
+        imageUrl
+        description
+        type
+        locked
+        canAccessOrgManagement
+        canCreateInvitation
+        canCreateProject
+        canCreateDataset
+        canUpdatePermissions
+        canUpdateDisplayName
+      }
+    }
+  }
+}

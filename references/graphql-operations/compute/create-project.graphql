@@ -1,0 +1,17 @@
+mutation CreateProject($userId: String!, $name: String!, $description: String, $tagNames: [TagInput] = []) {
+  createProject(userId: $userId, name: $name, description: $description, tagNames: $tagNames) {
+    id
+    name
+    tags {
+      name
+    }
+    canCreateJob
+    owner {
+      id
+      displayName
+      ... on User {
+        username
+      }
+    }
+  }
+}

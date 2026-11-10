@@ -1,0 +1,54 @@
+query ProjectSearchPublic(
+  $q: String = ""
+  $page: Int! = 1
+  $tagNames: [String!] = []
+) {
+  publicProjects(q: $q, page: $page, tagNames: $tagNames) {
+    data {
+      id
+      name
+      description
+      imageUrl
+      owner {
+        id
+        displayName
+      }
+      creator {
+        id
+        displayName
+      }
+      updatedAt
+      jobCount
+      runningJobCount
+      permissions {
+        publicPermission
+      }
+      latestJob {
+        id
+        mode
+        resource {
+          name
+          verboseName
+          gpuResource
+        }
+        ... on Workspace {
+          isCached
+          __typename
+        }
+      }
+      tags {
+        name
+      }
+      links {
+        name
+        value
+      }
+    }
+    pageInfo {
+      current
+      total
+      next
+      prev
+    }
+  }
+}

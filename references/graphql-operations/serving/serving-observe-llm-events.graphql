@@ -1,0 +1,18 @@
+query ServingObserveLLMEvents($username: String!, $id: String!, $version: Int!, $from: String!, $to: String!, $tail: Int!) {
+  servingVersion(userId: $username, servingId: $id, version: $version) {
+    servingId
+    version
+    llmEvents(from: $from, to: $to, tail: $tail) {
+      id
+      time
+      events {
+        apiKeyId
+        completionTokens
+        latency
+        promptTokens
+        timeToFirstToken
+        totalTokens
+      }
+    }
+  }
+}

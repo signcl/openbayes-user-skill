@@ -1,0 +1,46 @@
+query LoadProjectContext($projectId: String!) {
+  project(projectId: $projectId) {
+    id
+    name
+    description
+    canEdit
+    idleTimeoutSeconds
+    jobCount
+    runningJobCount
+    workspaceCount
+    canCreateJob
+    canOnlyAccessPublicResource
+    canUpdatePermission
+    permissions {
+      publicPermission
+      orgPermission
+      canPublicRead
+      canRead
+      canWrite
+    }
+    owner {
+      id
+      displayName
+      ... on User {
+        username
+      }
+      ... on Org {
+        displayName
+      }
+    }
+    creator {
+      id
+      username
+    }
+    tags {
+      name
+    }
+    latestJob {
+      id
+      name
+      mode
+      status
+      subStatus
+    }
+  }
+}

@@ -1,0 +1,16 @@
+mutation UpdateProjectEntityPermissions(
+  $ownerId: String!
+  $projectId: String!
+  $input: UpdateProjectEntityPermission
+) {
+  updateProjectEntityPermissions(userId: $ownerId, projectId: $projectId, input: $input) {
+    id
+    permissions {
+      publicPermission
+      orgPermission
+      canPublicRead
+      canRead
+      canWrite
+    }
+  }
+}

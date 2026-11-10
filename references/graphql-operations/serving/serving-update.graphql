@@ -1,0 +1,9 @@
+mutation ServingUpdate($username: String!, $id: String!, $input: UpdateServingInput!) {
+  updateServing(userId: $username, servingId: $id, input: $input) {
+    id
+    slug
+    description
+    requestSavingRate
+    needAuthorization
+  }
+}

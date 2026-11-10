@@ -1,0 +1,107 @@
+query Whoami {
+  me {
+    id
+    username
+    displayName
+    registerAt
+    roles
+    type
+    locked
+    hasMembership
+    features
+    account {
+      balance {
+        amount
+        currency
+      }
+      debtMoney {
+        amount
+        currency
+      }
+    }
+    quota {
+      storageQuota {
+        currentUsedMegaBytes
+        totalMegaBytes
+        remainMegaBytes
+      }
+      computationQuota {
+        key
+        value {
+          availableMinutes
+          debtMinutes
+        }
+      }
+      sharedComputationQuota {
+        sharedQuota {
+          resources
+          totalMinutes
+          currentMinutes
+        }
+      }
+    }
+    limitations {
+      resources {
+        key
+        value {
+          current
+          limit
+          freeCount
+        }
+      }
+      gpus {
+        key
+        value {
+          current
+          limit
+        }
+      }
+      jobs {
+        cacheCount
+        workspaceAvailableHours
+      }
+      dataset {
+        publicItem { current, limit }
+        privateItem { current, limit }
+      }
+      project {
+        publicItem { current, limit }
+        privateItem { current, limit }
+      }
+    }
+    group {
+      id
+      name
+    }
+    orgs {
+      id
+      role
+      org {
+        id
+        displayName
+      }
+    }
+    jobs(page: 1, status: [RUNNING, CREATED]) {
+      pageInfo { total }
+      data {
+        id
+        name
+        mode
+        status
+        createdAt
+        resource {
+          name
+          verboseName
+        }
+        runtime {
+          framework
+          version
+        }
+        project {
+          id
+          name
+        }
+      }
+    }
+  }
+}

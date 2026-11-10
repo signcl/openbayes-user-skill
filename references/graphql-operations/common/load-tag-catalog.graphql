@@ -1,0 +1,23 @@
+query LoadTagCatalog(
+  $include: TagReservedTypeInput! = ALL
+  $type: TagStructureInput! = LIST
+) {
+  tags(include: $include, type: $type) {
+    id
+    name
+    reserved
+    published
+    leaf
+    parent
+    editable {
+      name
+      value
+      description
+    }
+    hidden {
+      name
+      value
+      description
+    }
+  }
+}

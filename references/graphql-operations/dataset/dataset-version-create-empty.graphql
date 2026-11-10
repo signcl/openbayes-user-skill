@@ -1,0 +1,11 @@
+mutation DatasetVersionCreateEmpty($datasetId: String!) {
+  createEmptyVersion(datasetId: $datasetId) {
+    id
+    version
+    name
+    status
+    subStatus
+    semanticBindingName
+    canBindJob
+  }
+}

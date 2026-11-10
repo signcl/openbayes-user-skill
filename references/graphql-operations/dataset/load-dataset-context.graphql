@@ -1,0 +1,40 @@
+query LoadDatasetContext($userId: String!, $datasetId: String!, $version: Int!) {
+  dataset(datasetId: $datasetId) {
+    id
+    name
+    category
+    latestVersion
+    size
+    permissions {
+      publicPermission
+      orgPermission
+      canPublicRead
+      canRead
+      canWrite
+    }
+  }
+  datasetVersion(userId: $userId, datasetId: $datasetId, version: $version) {
+    id
+    version
+    name
+    description
+    semanticBindingName
+    status
+    subStatus
+    size
+    canBindJob
+    canBeBoundWithWritePermission
+    owner {
+      id
+      displayName
+      ... on User {
+        username
+      }
+    }
+    creator {
+      id
+      username
+    }
+  }
+  datasetReadMe(datasetId: $datasetId, version: $version)
+}

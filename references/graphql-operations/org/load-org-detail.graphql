@@ -1,0 +1,24 @@
+query LoadOrgDetail($orgId: ID!) {
+  org(id: $orgId) {
+    id
+    displayName
+    imageUrl
+    description
+    type
+    locked
+    registerAt
+    seatCountQuota {
+      seatCount
+      usedSeatCount
+      freeSeatCount
+    }
+    canAccessOrgManagement
+    canAccessOrgUsages
+    canCreateInvitation
+    canCreateProject
+    canCreateDataset
+    canCreateAutoML
+    canUpdatePermissions
+    canUpdateDisplayName
+  }
+}

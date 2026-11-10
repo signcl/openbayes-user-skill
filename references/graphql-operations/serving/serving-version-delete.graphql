@@ -1,0 +1,5 @@
+mutation ServingVersionDelete($username: String!, $id: String!, $version: Int!) {
+  deleteServingVersion(userId: $username, servingId: $id, version: $version) {
+    success
+  }
+}

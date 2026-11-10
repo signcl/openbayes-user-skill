@@ -1,0 +1,16 @@
+mutation CreatePersonalAccessToken(
+  $userId: String!
+  $name: String!
+  $expiresAt: UTCDateTime
+) {
+  createPersonalAccessToken(userId: $userId, name: $name, expiresAt: $expiresAt) {
+    token
+    personalAccessToken {
+      id
+      name
+      ownerId
+      createdAt
+      expiresAt
+    }
+  }
+}

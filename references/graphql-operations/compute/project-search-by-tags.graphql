@@ -1,0 +1,37 @@
+query ProjectSearchByTags(
+  $ownerId: ID!
+  $q: String! = ""
+  $page: Int! = 1
+  $scope: DatasetScopeInput = ALL
+  $tagNames: [String!] = []
+  $write: Boolean
+) {
+  party(id: $ownerId) {
+    id
+    projects(q: $q, page: $page, scope: $scope, tagNames: $tagNames, write: $write) {
+      data {
+        id
+        name
+        description
+        canEdit
+        owner {
+          id
+          displayName
+        }
+        permissions {
+          publicPermission
+          orgPermission
+        }
+        tags {
+          name
+        }
+      }
+      pageInfo {
+        current
+        total
+        next
+        prev
+      }
+    }
+  }
+}

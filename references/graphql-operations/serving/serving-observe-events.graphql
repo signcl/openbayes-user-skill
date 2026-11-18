@@ -1,0 +1,16 @@
+query ServingObserveEvents($username: String!, $id: String!, $version: Int!, $from: String!, $to: String!, $tail: Int!) {
+  servingVersion(userId: $username, servingId: $id, version: $version) {
+    servingId
+    version
+    events(from: $from, to: $to, tail: $tail) {
+      id
+      time
+      events {
+        name
+        data
+        thumb
+        url
+      }
+    }
+  }
+}

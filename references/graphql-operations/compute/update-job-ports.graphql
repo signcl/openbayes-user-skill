@@ -1,0 +1,22 @@
+# The name field is `name` on BOTH sides: the response selects `ports { name port }`
+# (JobPort) and each item you SEND is a `PortInput { name, port }`:
+#   { "name": "gradio", "port": 7860 }   ← copying the response shape is correct
+# (it was `customizedName` on the input side until a 2026-08 rename)
+# `ports` REPLACES the whole set (read current ports first, send the full desired array).
+# Port 8080 is the default `auxiliary` slot (reserved, not a mapping target) — an
+# app there is read from links.auxiliary. Access URLs are on Job.links[], not on
+# this response. Full rules + vars: ./update-job-ports.vars.md
+mutation UpdateJobPorts($userId: String!, $jobId: String!, $ports: [PortInput!]!) {
+  updateJobPorts(userId: $userId, jobId: $jobId, ports: $ports) {
+    __typename
+    id
+    name
+    mode
+    status
+    subStatus
+    ports {
+      name
+      port
+    }
+  }
+}

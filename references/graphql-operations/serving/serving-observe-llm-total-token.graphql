@@ -1,0 +1,24 @@
+query ServingObserveLLMTotalToken(
+  $username: String!
+  $id: String!
+  $version: Int!
+  $from: String!
+  $to: String!
+  $resolution: String!
+) {
+  servingVersion(userId: $username, servingId: $id, version: $version) {
+    servingId
+    version
+    llmTotalTokenTraces(from: $from, to: $to, resolution: $resolution) {
+      time
+      count
+      avg
+      max
+      p50
+      p75
+      p90
+      p95
+      p99
+    }
+  }
+}

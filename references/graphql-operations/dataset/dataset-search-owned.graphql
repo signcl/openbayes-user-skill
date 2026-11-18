@@ -1,0 +1,44 @@
+query DatasetSearchOwned(
+  $username: ID!
+  $q: String! = ""
+  $page: Int! = 1
+  $perPage: Int! = 30
+  $category: [DatasetCategoryInput] = [ALL]
+) {
+  party(id: $username) {
+    id
+    datasets(q: $q, page: $page, perPage: $perPage, category: $category) {
+      data {
+        id
+        name
+        category
+        latestVersion
+        size
+        permissions {
+          publicPermission
+          orgPermission
+        }
+        latestDatasetVersion {
+          id
+          version
+          semanticBindingName
+          canBindJob
+          canBeBoundWithWritePermission
+        }
+        tags {
+          name
+        }
+        links {
+          name
+          value
+        }
+      }
+      pageInfo {
+        current
+        total
+        next
+        prev
+      }
+    }
+  }
+}

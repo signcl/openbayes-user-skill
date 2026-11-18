@@ -1,0 +1,26 @@
+query LoadResourceCatalog($partyId: String, $labels: [String]) {
+  normalClusterResources(partyId: $partyId, labels: $labels) {
+    name
+    verboseName
+    gpuResource
+    labels
+    affordable
+    isFullLoad
+    memory
+    cpu {
+      millicores
+      count
+    }
+    gpu {
+      name
+      count
+      type
+      verboseName
+      memory
+    }
+    disk {
+      size
+      type
+    }
+  }
+}

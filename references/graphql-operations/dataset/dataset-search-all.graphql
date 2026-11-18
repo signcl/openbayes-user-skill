@@ -1,0 +1,63 @@
+query DatasetSearchAll(
+  $username: ID!
+  $q: String! = ""
+  $category: [DatasetCategoryInput] = [ALL]
+  $ownedPage: Int! = 1
+  $publicPage: Int! = 1
+  $tagNames: [String!] = []
+) {
+  party(id: $username) {
+    id
+    datasets(q: $q, page: $ownedPage, category: $category) {
+      data {
+        id
+        name
+        category
+        latestVersion
+        size
+        permissions {
+          publicPermission
+          orgPermission
+        }
+        tags {
+          name
+        }
+        links {
+          name
+          value
+        }
+      }
+      pageInfo {
+        current
+        total
+        next
+        prev
+      }
+    }
+  }
+  publicDatasets(q: $q, page: $publicPage, category: $category, tagNames: $tagNames) {
+    data {
+      id
+      name
+      category
+      latestVersion
+      size
+      permissions {
+        publicPermission
+      }
+      tags {
+        name
+      }
+      links {
+        name
+        value
+      }
+    }
+    pageInfo {
+      current
+      total
+      next
+      prev
+    }
+  }
+}

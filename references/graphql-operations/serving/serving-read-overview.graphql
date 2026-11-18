@@ -1,0 +1,41 @@
+query ServingReadOverview($username: String!, $id: String!) {
+  serving(userId: $username, servingId: $id) {
+    id
+    name
+    description
+    status
+    needAuthorization
+    links {
+      name
+      value
+    }
+    permissions {
+      canRead
+      canWrite
+    }
+    latestServingVersion {
+      servingId
+      version
+      status
+      subStatus
+      canStop
+      canDestroy
+      live
+      runtime {
+        framework
+        version
+        device
+      }
+      resource {
+        name
+        verboseName
+      }
+      servingVersionInstances {
+        name
+        status
+        ready
+        restartCount
+      }
+    }
+  }
+}

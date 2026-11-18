@@ -1,0 +1,53 @@
+query LoadMyJobs(
+  $username: ID!
+  $page: Int! = 1
+  $perPage: Int! = 30
+  $status: [JobStatusInput] = [ALL]
+  $q: String! = ""
+  $modes: [JobModeInput!] = [WORKSPACE, TASK]
+) {
+  party(id: $username) {
+    id
+    jobs(page: $page, perPage: $perPage, status: $status, q: $q, modes: $modes) {
+      data {
+        id
+        name
+        description
+        mode
+        status
+        subStatus
+        canStop
+        canStart
+        owner { id ... on User { username } }
+        createdAt
+        startedAt
+        endAt
+        resource {
+          name
+          verboseName
+          gpuResource
+          memory
+        }
+        runtime {
+          framework
+          version
+          device
+        }
+        project {
+          id
+          name
+        }
+        links {
+          name
+          value
+        }
+      }
+      pageInfo {
+        current
+        total
+        next
+        prev
+      }
+    }
+  }
+}

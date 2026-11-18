@@ -1,0 +1,67 @@
+query LoadUserSubscriptions(
+  $username: String!
+  $category: PlanCategoryInput = ALL
+) {
+  availableSubscriptions(userId: $username, category: $category) {
+    id
+    renewable
+    effectedFrom
+    effectedTo
+    duration
+    status
+    canCancel
+    canAlternatives
+    canChangeRequest
+    alternatives
+    container {
+      id
+      name
+      owner {
+        id
+      }
+    }
+    creator {
+      id
+    }
+    plan {
+      name
+      category
+      description
+      ... on StoragePlan {
+        megabytes
+      }
+      ... on OrgTimeBoxedPlan {
+        seatCount
+      }
+      price {
+        currency
+        amount
+      }
+      ... on ContainerTimeBoxedComputationPlan {
+        duration
+        resource {
+          name
+        }
+      }
+    }
+    changeRequest {
+      id
+      requestType
+      effectedAt
+      targetPlan {
+        ... on OrgTimeBoxedPlan {
+          seatCount
+          duration
+        }
+        ... on StoragePlan {
+          megabytes
+          duration
+        }
+        price {
+          currency
+          amount
+        }
+      }
+    }
+  }
+}

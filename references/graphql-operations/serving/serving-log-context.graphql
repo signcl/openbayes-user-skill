@@ -1,0 +1,12 @@
+query ServingLogContext($username: String!, $id: String!, $version: Int!) {
+  serving(userId: $username, servingId: $id) {
+    id
+    owner { id }
+    links { name value }
+  }
+  servingVersion(userId: $username, servingId: $id, version: $version) {
+    servingId
+    version
+    live
+  }
+}

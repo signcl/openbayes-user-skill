@@ -1,0 +1,5 @@
+mutation DeleteJob($userId: String!, $jobId: String!) {
+  deleteJob(userId: $userId, jobId: $jobId) {
+    success
+  }
+}

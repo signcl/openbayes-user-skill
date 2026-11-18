@@ -1,0 +1,55 @@
+query LoadUserContext($username: String!) {
+  user(username: $username) {
+    id
+    username
+    displayName
+    features
+    limitations {
+      quota {
+        uploadSizeLimit
+      }
+      jobs {
+        cacheCount
+      }
+      dataset {
+        publicItem {
+          current
+          limit
+        }
+        privateItem {
+          current
+          limit
+        }
+      }
+      project {
+        publicItem {
+          current
+          limit
+        }
+        privateItem {
+          current
+          limit
+        }
+      }
+      resources {
+        key
+        value {
+          current
+          limit
+          freeCount
+        }
+      }
+      gpus {
+        key
+        value {
+          current
+          limit
+        }
+      }
+      unfinishedSnapshots {
+        current
+        limit
+      }
+    }
+  }
+}

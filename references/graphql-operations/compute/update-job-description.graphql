@@ -1,0 +1,11 @@
+mutation UpdateJobDescription($userId: String!, $jobId: String!, $input: UpdateJobInput!) {
+  updateJob(userId: $userId, jobId: $jobId, input: $input) {
+    __typename
+    id
+    name
+    description
+    mode
+    status
+    subStatus
+  }
+}
